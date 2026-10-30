@@ -1,0 +1,57 @@
+{
+  "name": "escrithorius",
+  "version": "1.0.0",
+  "description": "Escritório virtual (pixel art) para ver o Claude Code trabalhando: agentes, skills e sessões. Só leitura, tudo local.",
+  "main": "main.js",
+  "scripts": {
+    "test": "node --test",
+    "start": "electron .",
+    "dist": "electron-builder --win portable",
+    "test:ui": "electron test-ui/interface.js && electron test-ui/avisos.js",
+    "test:exe": "node test-ui/exe.js"
+  },
+  "keywords": [
+    "claude-code",
+    "electron",
+    "observabilidade",
+    "pixel-art"
+  ],
+  "author": "Thales de Souza Guasti <thales.guasti@gmail.com>",
+  "license": "MIT",
+  "type": "commonjs",
+  "private": true,
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "local.escrithorius",
+    "productName": "Escrithorius",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**",
+      "renderer/**",
+      "package.json",
+      "build/icone.png"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "build/icone.ico",
+      "signExecutable": false
+    },
+    "electronFuses": {
+      "runAsNode": false,
+      "enableNodeOptionsEnvironmentVariable": false,
+      "enableNodeCliInspectArguments": false,
+      "onlyLoadAppFromAsar": true
+    },
+    "artifactName": "Escrithorius-${version}-portable.exe"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

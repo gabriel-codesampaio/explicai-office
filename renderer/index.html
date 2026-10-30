@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Escrithorius</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="topo">
+    <header id="barra">
+      <div id="titulo">
+        <h1><i class="marca" aria-hidden="true"></i>Escrithorius</h1>
+        <p>Seus agentes do Claude Code em atividade, por projeto e em tempo real.</p>
+      </div>
+      <div id="opcoes" role="group" aria-label="Avisos do Windows">
+        <button id="op-avisos" type="button" aria-pressed="true" title="Notificação do Windows quando um agente conclui, uma sessão aguarda você ou um agente fica sem sinal (só com a janela em segundo plano)">Avisos</button>
+        <button id="op-compacto" type="button" aria-pressed="false" title="Mini-janela sempre no topo, com uma linha por projeto (atalho M)">Compacto</button>
+        <button id="op-som" type="button" aria-pressed="false" title="Toca o som do Windows junto com o aviso">Som</button>
+        <button id="op-config" type="button" aria-haspopup="dialog" title="Configurações: avisos, som, falas e pasta do Claude Code">Configurações</button>
+      </div>
+      <div id="modos" role="group" aria-label="Modo de exibição (atalho L)">
+        <button id="modo-painel" type="button" aria-pressed="false">Painel</button>
+        <button id="modo-escritorio" type="button" aria-pressed="true">Escritório</button>
+      </div>
+    </header>
+    <section id="cartoes-topo" aria-label="Resumo">
+      <div class="card verde"><span class="rot"><i class="ponto" aria-hidden="true"></i>Trabalhando</span><strong id="c-trabalhando">0</strong></div>
+      <div class="card azul"><span class="rot"><i class="ponto" aria-hidden="true"></i>Delegando</span><strong id="c-delegando">0</strong></div>
+      <div class="card laranja"><span class="rot"><i class="ponto" aria-hidden="true"></i>Aguardando</span><strong id="c-aguardando">0</strong></div>
+      <div class="card roxo"><span class="rot"><i class="ponto" aria-hidden="true"></i>Projetos ativos</span><strong id="c-projetos">0</strong></div>
+    </section>
+    <p id="alerta-formato" class="alerta" role="status" hidden></p>
+    <p id="vivo"><span class="selo"><i class="ponto" aria-hidden="true"></i>AO VIVO</span><span id="vivo-texto"></span></p>
+  </div>
+
+  <main id="vista-cena">
+    <p id="combo" role="status" hidden>COMBO! Cinco execuções encerradas em 10 minutos.</p>
+    <div id="salas"></div>
+    <p id="sem-salas" class="aviso" hidden>Nenhuma sessão do Claude Code aberta no momento. Abra o Claude Code em um projeto e a sala dele aparece aqui.</p>
+    <p id="mais-salas" class="aviso" hidden></p>
+    <section id="skills-faixa" aria-label="Skills">
+      <h2>Skills</h2>
+      <ul id="skills-chips"></ul>
+      <p id="skills-vazio" class="suave" hidden>Nenhuma skill em ~/.claude/skills.</p>
+    </section>
+    <div id="dica" role="tooltip" hidden></div>
+  </main>
+
+  <main id="vista-compacta" hidden>
+    <p id="compacto-resumo" class="suave"></p>
+    <ul id="compacto-lista"></ul>
+  </main>
+
+  <main id="vista-lista" hidden>
+    <h2>Projetos</h2>
+    <div id="projetos-painel"></div>
+    <p id="sem-projetos" class="suave" hidden>Nenhuma sessão do Claude Code aberta no momento.</p>
+    <h2>Agentes do catálogo (~/.claude/agents)</h2>
+    <ul id="mesas"></ul>
+    <h2>Bancada (skills)</h2>
+    <ul id="skills" class="bancada"></ul>
+    <h2>Atividade recente</h2>
+    <ul id="atividade"></ul>
+  </main>
+
+  <section id="config" hidden role="dialog" aria-modal="true" aria-labelledby="config-titulo">
+    <div class="config-caixa">
+      <button id="config-fechar" type="button" class="config-x">Fechar (Esc)</button>
+      <h2 id="config-titulo">Configurações</h2>
+
+      <h3>Pasta do Claude Code</h3>
+      <p class="suave">O Escrithorius lê <strong>só</strong> esta pasta (agentes, skills e sessões do <em>seu</em> Claude Code) e nunca altera nada nela.</p>
+      <p id="cfg-pasta" class="caminho"></p>
+      <p id="cfg-status" class="suave"></p>
+      <p id="cfg-erro" class="erro" role="alert"></p>
+      <div class="config-botoes">
+        <button id="cfg-escolher" type="button">Escolher outra pasta…</button>
+        <button id="cfg-padrao" type="button">Usar a padrão</button>
+      </div>
+
+      <h3>Preferências</h3>
+      <label class="config-linha"><input type="checkbox" id="cfg-avisos"> <span><strong>Avisos do Windows</strong> quando um agente conclui, uma sessão aguarda você ou um agente fica sem sinal (só com a janela em segundo plano)</span></label>
+      <label class="config-linha"><input type="checkbox" id="cfg-som"> <span><strong>Som</strong> junto com o aviso</span></label>
+      <label class="config-linha"><input type="checkbox" id="cfg-falas"> <span><strong>Frases de comemoração</strong> (balão ao terminar uma tarefa) e faixa de combo</span></label>
+
+      <h3>Sobre</h3>
+      <p class="suave">Tudo roda no seu computador: nada é enviado para fora, e segredos (tokens, senhas, chaves) são mascarados antes de aparecer na tela. As preferências acima ficam num arquivo local pequeno (só liga/desliga e a pasta); nenhuma conversa é gravada.</p>
+      <p class="suave">Projeto independente, sem vínculo com a Anthropic. Arte e frases originais.</p>
+      <p id="cfg-versao" class="suave"></p>
+    </div>
+  </section>
+
+  <section id="painel" hidden role="dialog" aria-modal="false" aria-labelledby="painel-titulo">
+    <button id="fechar" type="button">Fechar (Esc)</button>
+    <button id="copiar" type="button" title="Copia o comando para retomar a sessão deste agente. Rode no terminal, dentro da pasta do projeto.">Copiar comando de retomada</button>
+    <span id="copiar-aviso" role="status" aria-live="polite"></span>
+    <h2 id="painel-titulo"></h2>
+    <pre id="painel-texto"></pre>
+  </section>
+
+  <script src="prefs.js"></script>
+  <script src="modelo.js"></script>
+  <script src="anim.js"></script>
+  <script src="frases.js"></script>
+  <script src="ovos.js"></script>
+  <script src="salas.js"></script>
+  <script src="movimento.js"></script>
+  <script src="arte.js"></script>
+  <script src="painel.js"></script>
+  <script src="compacto.js"></script>
+  <script src="app.js"></script>
+  <script src="cena.js"></script>
+  <script src="topo.js"></script>
+  <script src="avisos.js"></script>
+  <script src="config.js"></script>
+</body>
+</html>
