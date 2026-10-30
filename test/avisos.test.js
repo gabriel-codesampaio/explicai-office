@@ -63,7 +63,7 @@ test('vários itens viram um aviso agrupado, com no máximo 4 linhas e "+N mais"
   const itens = [];
   for (let k = 0; k < 7; k++) itens.push({ tipo: 'concluido', projeto: 'proj', rotulo: 'ag' + k, tarefaId: 't' + k });
   const av = montarAviso(itens);
-  assert.strictEqual(av.titulo, '7 avisos do Escrithorius');
+  assert.strictEqual(av.titulo, '7 avisos do Explicaí Office');
   assert.strictEqual(av.corpo.split('\n').length, 5);
   assert.ok(av.corpo.endsWith('+3 mais'));
   assert.strictEqual(av.tarefaId, null, 'agrupado não abre relatório');

@@ -329,7 +329,7 @@
     vistaCompacta.hidden = !compacto;
     vistaCena.hidden = compacto || modo !== 'cena';
     vistaLista.hidden = compacto || modo !== 'lista';
-    window.escrithorius.definirCompacto(compacto); // o processo principal ajusta o tamanho e o "sempre no topo"
+    window.office.definirCompacto(compacto); // o processo principal ajusta o tamanho e o "sempre no topo"
     ajustar();
     atualizar();
   }
@@ -348,7 +348,7 @@
   window.addEventListener('scroll', fecharDica, { passive: true });
   window.addEventListener('resize', () => { ajustar(); desenhar(); });
   document.addEventListener('visibilitychange', () => { if (!document.hidden) atualizar(); });
-  window.escrithorius.aoReceberEstado((e) => atualizar(e));
+  window.office.aoReceberEstado((e) => atualizar(e));
   setInterval(() => { if (!document.hidden) { ajustar(); atualizar(); } }, 1000); // recalcula a cena (tempos, estados) e acompanha mudança de zoom/monitor
   // Animação: ~20 quadros por segundo, parada quando a janela está escondida/minimizada ou no modo Painel.
   setInterval(desenhar, Anim.PASSO_MS);

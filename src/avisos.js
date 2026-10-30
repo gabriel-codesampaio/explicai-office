@@ -92,7 +92,7 @@ function montarAviso(itens) {
   }
   const linhas = itens.slice(0, MAX_LINHAS).map(linha);
   if (itens.length > MAX_LINHAS) linhas.push('+' + (itens.length - MAX_LINHAS) + ' mais');
-  return { titulo: itens.length + ' avisos do Escrithorius', corpo: linhas.join('\n'), tarefaId: null, rotulo: null };
+  return { titulo: itens.length + ' avisos do Explicaí Office', corpo: linhas.join('\n'), tarefaId: null, rotulo: null };
 }
 
 module.exports = { criarAvisos, montarAviso, atrasoDoEnvio, limitar, AGRUPA_MS, MIN_ENTRE_AVISOS_MS, MAX_PENDENTES, REAVISO_ESPERANDO_MS };

@@ -1,7 +1,7 @@
 {
-  "name": "escrithorius",
-  "version": "1.0.0",
-  "description": "Escritório virtual (pixel art) para ver o Claude Code trabalhando: agentes, skills e sessões. Só leitura, tudo local.",
+  "name": "explicai-office",
+  "version": "0.1.0",
+  "description": "Escritório virtual em pixel art para ver a equipe de agentes do Explicaí trabalhando no Claude Code. Só leitura, tudo local. Baseado no Escrithorius. / Pixel-art virtual office to watch the Explicaí agent team working in Claude Code. Read-only, fully local. Based on Escrithorius.",
   "main": "main.js",
   "scripts": {
     "test": "node --test",
@@ -14,9 +14,11 @@
     "claude-code",
     "electron",
     "observabilidade",
-    "pixel-art"
+    "pixel-art",
+    "explicai",
+    "agents"
   ],
-  "author": "Thales de Souza Guasti <thales.guasti@gmail.com>",
+  "author": "Gabriel Sampaio",
   "license": "MIT",
   "type": "commonjs",
   "private": true,
@@ -25,8 +27,8 @@
     "electron-builder": "26.18.0"
   },
   "build": {
-    "appId": "local.escrithorius",
-    "productName": "Escrithorius",
+    "appId": "local.explicai-office",
+    "productName": "Explicaí Office",
     "directories": {
       "output": "dist"
     },
@@ -49,9 +51,16 @@
       "enableNodeCliInspectArguments": false,
       "onlyLoadAppFromAsar": true
     },
-    "artifactName": "Escrithorius-${version}-portable.exe"
+    "artifactName": "explicai-office-${version}-portable.exe"
   },
   "engines": {
     "node": ">=20"
+  },
+  "contributors": [
+    "Thales de Souza Guasti (Escrithorius, projeto original)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gabriel-codesampaio/explicai-office.git"
   }
 }

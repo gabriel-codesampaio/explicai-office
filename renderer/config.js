@@ -1,7 +1,7 @@
 // Tela de Configurações: preferências (avisos, som, falas), pasta do Claude Code lida pelo app e informações para quem recebeu o projeto.
 // Só texto puro (textContent). A pasta nunca é digitada: só o seletor nativo de pastas (processo principal) ou "usar a padrão".
 (function () {
-  const api = window.escrithorius;
+  const api = window.office;
   const caixa = document.getElementById('config');
   const abrir = document.getElementById('op-config');
   const fechar = document.getElementById('config-fechar');
@@ -25,7 +25,7 @@
     texto('cfg-erro', c.erro || '');
     document.getElementById('cfg-escolher').disabled = !!c.forcada;
     document.getElementById('cfg-padrao').disabled = !!c.forcada || !!c.padrao;
-    texto('cfg-versao', 'Escrithorius ' + c.versao + ' · preferências em ' + c.arquivo);
+    texto('cfg-versao', 'Explicaí Office ' + c.versao + ' · preferências em ' + c.arquivo);
   }
 
   async function recarregar() { try { mostrar(await api.obterConfig()); } catch { /* mantém o que está na tela */ } }

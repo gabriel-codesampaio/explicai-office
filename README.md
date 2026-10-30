@@ -1,4 +1,6 @@
-# Escrithorius
+# Explicaí Office
+
+> Projeto derivado do [Escrithorius](https://github.com/thalesguasti/escrithorius), de Thales de Souza Guasti, sob licença MIT. A base (salas, pixel art, estados, avisos e máscara de segredos) vem dele. O Explicaí Office adapta o escritório para a equipe de agentes do [explicai-workflow](https://github.com/gabriel-codesampaio/explicai-workflow).
 
 Um **escritório virtual** para ver o seu Claude Code trabalhando: uma sala em pixel art por projeto, onde a sessão principal e os agentes (subagentes) aparecem sentados à mesa quando trabalham, vão ao café quando terminam e esperam à toa na sala de estar quando ninguém os chamou. Tem avisos do Windows, modo compacto sempre no topo e um painel com tudo em lista.
 
@@ -28,11 +30,11 @@ npm ci        # instala as versões exatas do package-lock.json (baixa o Electro
 npm start
 ```
 
-Para gerar o executável portátil (sem instalador): `npm run dist` → `dist/Escrithorius-1.0.0-portable.exe`. Ele **não é assinado**: o SmartScreen do Windows pode avisar na primeira vez, e o ideal é compilar você mesmo a partir do código em vez de confiar num `.exe` pronto. No Windows, o `npm run dist` pode pedir o **Modo de Desenvolvedor** ou um terminal de administrador (o electron-builder cria links simbólicos). O `.exe` portátil se extrai em `%TEMP%`, e o Chromium guarda perfil e cache em `AppData`.
+Para gerar o executável portátil (sem instalador): `npm run dist` → `dist/explicai-office-0.1.0-portable.exe`. Ele **não é assinado**: o SmartScreen do Windows pode avisar na primeira vez, e o ideal é compilar você mesmo a partir do código em vez de confiar num `.exe` pronto. No Windows, o `npm run dist` pode pedir o **Modo de Desenvolvedor** ou um terminal de administrador (o electron-builder cria links simbólicos). O `.exe` portátil se extrai em `%TEMP%`, e o Chromium guarda perfil e cache em `AppData`.
 
 ### Primeira vez
 
-1. Abra o Claude Code em algum projeto: a sala dele aparece no Escrithorius.
+1. Abra o Claude Code em algum projeto: a sala dele aparece no Explicaí Office.
 2. Se aparecer "Não encontrei a pasta do Claude Code", abra o Claude Code uma vez, ou clique em **Configurações** e escolha a pasta (a que tem `agents`, `skills` e `sessions`). O app também respeita a variável `CLAUDE_CONFIG_DIR`, a mesma do Claude Code.
 
 ## Configurações
@@ -71,8 +73,8 @@ npm run test:exe  # confere o .exe gerado (rode npm run dist antes)
 
 ## Licença
 
-[MIT](LICENSE) © 2026 Thales de Souza Guasti.
+[MIT](LICENSE) © 2026 Thales de Souza Guasti (Escrithorius) e Gabriel Sampaio (Explicaí Office).
 
 ## Créditos e avisos
 
-Projeto independente, **sem vínculo com a Anthropic**. A pixel art é original (desenhada em código) e as frases de comemoração (`renderer/frases.js`) foram escritas para este projeto.
+Projeto independente, **sem vínculo com a Anthropic**. A pixel art (desenhada em código) e as frases de comemoração (`renderer/frases.js`) foram criadas por Thales de Souza Guasti para o Escrithorius.

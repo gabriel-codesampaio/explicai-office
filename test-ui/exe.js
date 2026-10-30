@@ -1,6 +1,6 @@
 const { spawn, execFileSync } = require('node:child_process');
 const fs = require('node:fs'), os = require('node:os'), path = require('node:path');
-const origem = process.argv[2] || require('node:path').join(__dirname, '..', 'dist', 'Escrithorius-1.0.0-portable.exe');
+const origem = process.argv[2] || require('node:path').join(__dirname, '..', 'dist', 'explicai-office-0.1.0-portable.exe');
 const pasta = fs.mkdtempSync(path.join(os.tmpdir(), 'escr-exe-'));      // "outra pasta"
 const dados = fs.mkdtempSync(path.join(os.tmpdir(), 'escr-dados-'));    // não colide com app aberto
 const exe = path.join(pasta, 'teste.exe');

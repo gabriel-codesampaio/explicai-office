@@ -34,7 +34,7 @@
     ].join(' · '));
   }
 
-  window.escrithorius.aoReceberEstado((e) => { estado = e; atualizar(); });
+  window.office.aoReceberEstado((e) => { estado = e; atualizar(); });
   setInterval(atualizar, 1000);
   document.addEventListener('visibilitychange', atualizar);
   atualizar();

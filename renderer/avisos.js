@@ -1,7 +1,7 @@
 // Botões "Avisos" e "Som" do topo. Quem decide e mostra a notificação é o processo principal (src/avisos.js); aqui só se liga e desliga.
 // As escolhas ficam no config.json local (ver Configurações): ao abrir, o estado vem de lá.
 (function () {
-  const api = window.escrithorius;
+  const api = window.office;
   const botoes = [['op-avisos', 'avisos', (v) => api.definirAvisos(v)], ['op-som', 'som', (v) => api.definirSom(v)]];
   for (const [id, chave, enviar] of botoes) {
     const b = document.getElementById(id);

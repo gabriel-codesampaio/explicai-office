@@ -139,7 +139,7 @@ function criarJanela() {
     minWidth: 800,
     minHeight: 640, // a cena (960x720 lógicos) encolhe até ~0,8x + barra
     useContentSize: true,
-    title: 'Escrithorius',
+    title: 'Explicaí Office',
     icon: path.join(__dirname, 'build', 'icone.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -180,7 +180,7 @@ function criarJanela() {
 if (!app.requestSingleInstanceLock()) {
   app.quit();
 } else {
-  app.setAppUserModelId('local.escrithorius'); // identifica o app nas notificações do Windows
+  app.setAppUserModelId('local.explicai-office'); // identifica o app nas notificações do Windows
   app.whenReady().then(criarJanela);
   app.on('window-all-closed', () => app.quit());
 }

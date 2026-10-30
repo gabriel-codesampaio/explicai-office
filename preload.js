@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 // Canais expostos: receber o estado (já mascarado), pedir o relatório de uma tarefa pelo id, ligar/desligar avisos e som.
-contextBridge.exposeInMainWorld('escrithorius', {
+contextBridge.exposeInMainWorld('office', {
   aoReceberEstado: (fn) => ipcRenderer.on('estado', (_e, estado) => fn(estado)),
   pedirRelatorio: (id) => ipcRenderer.invoke('relatorio', String(id)),
   copiarRetomada: (id) => ipcRenderer.invoke('retomada', String(id)),

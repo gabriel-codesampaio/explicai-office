@@ -107,7 +107,7 @@ function desenhar() {
   sincronizar('atividade', ultimo.agentes.map((a) => itemDeTarefa(a, agora)), 'Nenhum agente por aqui ainda.');
 }
 
-window.escrithorius.aoReceberEstado((estado) => { ultimo = estado; desenhar(); });
+window.office.aoReceberEstado((estado) => { ultimo = estado; desenhar(); });
 setInterval(desenhar, 1000);
 
 // --- Painel do relatório (texto puro, nunca HTML) ---
@@ -126,7 +126,7 @@ async function abrirRelatorio(li) {
   painel.hidden = false;
   document.getElementById('fechar').focus();
   let r = null;
-  try { r = await window.escrithorius.pedirRelatorio(id); } catch { /* mostra "indisponível" */ }
+  try { r = await window.office.pedirRelatorio(id); } catch { /* mostra "indisponível" */ }
   if (abertoId !== id) return; // abriu outro enquanto carregava
   if (!r) painelTexto.textContent = 'Relatório indisponível.';
   else if (!r.texto) painelTexto.textContent = 'Este agente ainda não entregou um relatório.';
@@ -161,12 +161,12 @@ const copiarAviso = document.getElementById('copiar-aviso');
 let copiarTimer = null;
 document.getElementById('copiar').addEventListener('click', async () => {
   let ok = false;
-  try { ok = abertoId ? await window.escrithorius.copiarRetomada(abertoId) : false; } catch { ok = false; }
+  try { ok = abertoId ? await window.office.copiarRetomada(abertoId) : false; } catch { ok = false; }
   copiarAviso.textContent = ok ? 'Copiado! Cole no terminal, na pasta do projeto.' : 'Não foi possível copiar.';
   clearTimeout(copiarTimer);
   copiarTimer = setTimeout(() => { copiarAviso.textContent = ''; }, 2500);
 });
 // Clique numa notificação do Windows: abre o relatório do agente que concluiu (o id só vale se o monitor o reconhecer).
-window.escrithorius.aoAbrirRelatorio((d) => {
+window.office.aoAbrirRelatorio((d) => {
   if (d && typeof d.id === 'string') abrirRelatorio({ dataset: { tarefa: d.id, titulo: typeof d.titulo === 'string' && d.titulo ? d.titulo : 'Relatório' } });
 });
